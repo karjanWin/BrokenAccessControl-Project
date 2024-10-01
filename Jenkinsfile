@@ -1,5 +1,13 @@
 pipeline {
     agent any
+     options {
+        skipDefaultCheckout()  // This avoids conflicts during checkout
+            }
+      stages {
+        stage('Clean Workspace') {
+            steps {
+                deleteDir()  // Deletes the workspace directory before running
+            }
     tools {
         maven 'Maven-BT'  // Ensure Maven is installed in Jenkins
     }
