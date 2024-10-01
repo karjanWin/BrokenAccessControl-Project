@@ -22,6 +22,12 @@ pipeline {
                 bat 'mvn clean install'
             }
         }
+        stage('Test') {
+            steps {
+                // Run the tests using Maven. JUnit tests are typically run in this phase.
+                bat 'mvn test'
+            }
+        }
         stage('SonarQube Analysis') {
             steps {
                 // Ensure SonarQube is configured with this name in Jenkins
@@ -38,7 +44,9 @@ pipeline {
     }
     post {
         always {
+            // Save the JAR file and test reports as artifacts
             archiveArtifacts artifacts: '**/target/*.jar', allowEmptyArchive: true
+            junit 'target/surefire-reports/*.xml'  // Archive the test results for JUnit
         }
     }
 }
