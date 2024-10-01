@@ -15,9 +15,11 @@ pipeline {
             }
         }
         stage('SonarQube Analysis') {
-    tool name: 'SonarQubeScanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
-    withSonarQubeEnv('Sonar-server') {
-        bat 'sonar-scanner'            }
+            steps {
+                // Ensure SonarQube is configured with this name in Jenkins
+                withSonarQubeEnv('SonarQube') {
+                    bat 'sonar-scanner'  // or use `${scannerHome}/bin/sonar-scanner` if needed
+                }
             }
         }
         stage('Deploy') {
