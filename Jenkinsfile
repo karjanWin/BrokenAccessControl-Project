@@ -17,7 +17,7 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 // Ensure SonarQube is configured with this name in Jenkins
-                withSonarQubeEnv('SonarQube') {
+                withSonarQubeEnv('Sonar-Server') {
                     bat 'sonar-scanner'  // or use `${scannerHome}/bin/sonar-scanner` if needed
                 }
             }
