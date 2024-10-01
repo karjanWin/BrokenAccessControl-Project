@@ -16,7 +16,7 @@ pipeline {
         }
         stage('SonarQube Analysis') {
     tool name: 'SonarQubeScanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
-    withSonarQubeEnv('SonarQube') {
+    withSonarQubeEnv('Sonar-server') {
         bat 'sonar-scanner'            }
             }
         }
