@@ -1,17 +1,17 @@
 pipeline {
     agent any
-     options {
+    options {
         skipDefaultCheckout()  // This avoids conflicts during checkout
-            }
-      stages {
-        stage('Clean Workspace') {
-            steps {
-                deleteDir()  // Deletes the workspace directory before running
-            }
+    }
     tools {
         maven 'Maven-BT'  // Ensure Maven is installed in Jenkins
     }
     stages {
+        stage('Clean Workspace') {
+            steps {
+                deleteDir()  // Deletes the workspace directory before running
+            }
+        }
         stage('Clone Repository') {
             steps {
                 git 'https://github.com/karjanWin/BrokenAccessControl-Project.git'
@@ -26,7 +26,7 @@ pipeline {
             steps {
                 // Ensure SonarQube is configured with this name in Jenkins
                 withSonarQubeEnv('Sonar-Server') {
-                    bat 'sonar-scanner'  // or use `${scannerHome}/bin/sonar-scanner` if needed
+                    bat 'sonar-scanner'  // Use `${scannerHome}/bin/sonar-scanner` if needed
                 }
             }
         }
