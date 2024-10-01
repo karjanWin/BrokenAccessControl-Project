@@ -1,7 +1,7 @@
 pipeline {
     agent any
     tools {
-        maven 'Maven'  // Ensure Maven is installed in Jenkins
+        maven 'Maven-BT'  // Ensure Maven is installed in Jenkins
     }
     stages {
         stage('Clone Repository') {
